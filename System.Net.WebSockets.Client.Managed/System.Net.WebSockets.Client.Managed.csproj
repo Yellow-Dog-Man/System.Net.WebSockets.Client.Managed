@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.1</Version>
+    <PackageId>YellowDogMan.System.Net.WebSockets.Client.Managed</PackageId>
     <Authors>Microsoft, Matthew Little, Yellow Dog Man Studios s.r.o</Authors>
     <Company>Microsoft, Pingman Tools, Yellow Dog Man Studios s.r.o</Company>
     <PackageLicenseUrl>https://github.com/Yellow-Dog-Man/System.Net.WebSockets.Client.Managed/blob/master/LICENSE</PackageLicenseUrl>

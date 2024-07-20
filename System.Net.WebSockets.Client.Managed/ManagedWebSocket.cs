@@ -625,6 +625,7 @@ namespace System.Net.WebSockets.Managed
         /// <param name="payloadBuffer">The buffer into which payload data should be written.</param>
         /// <param name="cancellationToken">The CancellationToken used to cancel the websocket.</param>
         /// <returns>Information about the received message.</returns>
+        bool _dumpNext = false;
         private async Task<WebSocketReceiveResult> ReceiveAsyncPrivate(ArraySegment<byte> payloadBuffer, CancellationToken cancellationToken)
         {
             // This is a long method.  While splitting it up into pieces would arguably help with readability, doing so would
@@ -727,10 +728,17 @@ namespace System.Net.WebSockets.Managed
                     header.PayloadLength -= bytesToCopy;
 
                     // If this a text message, validate that it contains valid UTF8.
-                    if (header.Opcode == MessageOpcode.Text &&
-                        !TryValidateUtf8(new ArraySegment<byte>(payloadBuffer.Array, payloadBuffer.Offset, bytesToCopy), header.Fin, _utf8TextState))
+                    if (_dumpNext || (header.Opcode == MessageOpcode.Text &&
+                        !TryValidateUtf8(new ArraySegment<byte>(payloadBuffer.Array, payloadBuffer.Offset, bytesToCopy), header.Fin && header.PayloadLength == 0, _utf8TextState)))
                     {
-                        await CloseWithReceiveErrorAndThrowAsync(WebSocketCloseStatus.InvalidPayloadData, WebSocketError.Faulted, cancellationToken).ConfigureAwait(false);
+                        var data = new byte[bytesToCopy];
+                        for (int i = 0; i < bytesToCopy; i++)
+                            data[i] = payloadBuffer.Array[payloadBuffer.Offset + i];
+
+                        File.WriteAllBytes(@$"D:\Temp\Websocket\Dump{DateTime.UtcNow.Ticks}_{_dumpNext}.bin", data);
+
+                        _dumpNext = !_dumpNext;
+                        //await CloseWithReceiveErrorAndThrowAsync(WebSocketCloseStatus.InvalidPayloadData, WebSocketError.Faulted, cancellationToken).ConfigureAwait(false);
                     }
 
                     _lastReceiveHeader = header;

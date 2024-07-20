@@ -5,11 +5,11 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.1</Version>
-    <Authors>Microsoft, Matthew Little</Authors>
-    <Company>Microsoft, Pingman Tools</Company>
-    <PackageLicenseUrl>https://github.com/PingmanTools/System.Net.WebSockets.Client.Managed/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/PingmanTools/System.Net.WebSockets.Client.Managed/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/PingmanTools/System.Net.WebSockets.Client.Managed/</RepositoryUrl>
+    <Authors>Microsoft, Matthew Little, Yellow Dog Man Studios s.r.o</Authors>
+    <Company>Microsoft, Pingman Tools, Yellow Dog Man Studios s.r.o</Company>
+    <PackageLicenseUrl>https://github.com/Yellow-Dog-Man/System.Net.WebSockets.Client.Managed/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Yellow-Dog-Man/System.Net.WebSockets.Client.Managed/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Yellow-Dog-Man/System.Net.WebSockets.Client.Managed/</RepositoryUrl>
     <PackageTags>websockets websocket-client websocketsharp clientwebsocket websocket4net</PackageTags>
     <Description>Microsoft's managed implementation of System.Net.WebSockets.ClientWebSocket tweaked for use on Windows 7 and .NET 4.5</Description>
     <LangVersion>latest</LangVersion>

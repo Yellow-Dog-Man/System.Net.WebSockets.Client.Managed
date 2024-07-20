@@ -731,14 +731,7 @@ namespace System.Net.WebSockets.Managed
                     if (_dumpNext || (header.Opcode == MessageOpcode.Text &&
                         !TryValidateUtf8(new ArraySegment<byte>(payloadBuffer.Array, payloadBuffer.Offset, bytesToCopy), header.Fin && header.PayloadLength == 0, _utf8TextState)))
                     {
-                        var data = new byte[bytesToCopy];
-                        for (int i = 0; i < bytesToCopy; i++)
-                            data[i] = payloadBuffer.Array[payloadBuffer.Offset + i];
-
-                        File.WriteAllBytes(@$"D:\Temp\Websocket\Dump{DateTime.UtcNow.Ticks}_{_dumpNext}.bin", data);
-
-                        _dumpNext = !_dumpNext;
-                        //await CloseWithReceiveErrorAndThrowAsync(WebSocketCloseStatus.InvalidPayloadData, WebSocketError.Faulted, cancellationToken).ConfigureAwait(false);
+                        await CloseWithReceiveErrorAndThrowAsync(WebSocketCloseStatus.InvalidPayloadData, WebSocketError.Faulted, cancellationToken).ConfigureAwait(false);
                     }
 
                     _lastReceiveHeader = header;
